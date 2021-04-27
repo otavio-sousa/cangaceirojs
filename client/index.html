@@ -58,6 +58,34 @@
         <tfoot>
         </tfoot>
     </table>
-    <script src="./app//index.js"></script>
+    <script src="app/domain/negociacao/Negociacao.js"></script>
+    <script>
+        
+        // o operador new serve para acessarmos o this de dentro do constructor e indicar que criamos uma nova instância do objeto
+        // cada instância é única e recebe as instruções definidas na class 
+        // var negociacao1 = new Negociacao()
+        // var negociacao2 = new Negociacao()
+        // negociacao1 != negociacao2
+
+        // podemos passar os valores como parametros para o constructor da class quando definimos uma instancia
+
+        var negociacao = new Negociacao(new Date(), 3, 100)
+        var volume = negociacao.volume
+        console.log(negociacao)
+        console.log(volume)
+
+        // metodos acessadores get
+        var quantidade = negociacao.quantidade
+        var valor = negociacao.valor
+        var data = negociacao.data
+        console.log(quantidade)
+        console.log(valor)
+        console.log(data)
+
+        // os metodos acessadores get não podem ter valores reatribuídos à eles
+        negociacao.valor = 11
+        console.log(negociacao.valor)
+
+    </script>
 </body>
 </html>
