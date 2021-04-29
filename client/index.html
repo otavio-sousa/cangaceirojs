@@ -69,15 +69,15 @@
 
         // podemos passar os valores como parametros para o constructor da class quando definimos uma instancia
 
-        var negociacao = new Negociacao(new Date(), 3, 100)
-        var volume = negociacao.volume
+        let negociacao = new Negociacao(new Date(), 3, 100)
+        let volume = negociacao.volume
         console.log(negociacao)
         console.log(volume)
 
         // metodos acessadores get
-        var quantidade = negociacao.quantidade
-        var valor = negociacao.valor
-        var data = negociacao.data
+        let quantidade = negociacao.quantidade
+        let valor = negociacao.valor
+        let data = negociacao.data
         console.log(quantidade)
         console.log(valor)
         console.log(data)
@@ -106,18 +106,21 @@
         console.log(negociacao.data)
         
         // programação defensiva
-        var hoje = new Date()
-        var negociacao2 = new Negociacao(hoje, 10, 900)
+        let hoje = new Date()
+        let negociacao2 = new Negociacao(hoje, 10, 900)
         console.log('Data: ' + negociacao2.data)
         hoje.setDate(10)
         console.log('Data alterada: ' + negociacao2.data)
 
         // adicionando propriedades à um objeto com Object.assign()
-        var idade = { idade: 24 }
-        var sexo = { sexo: 'M' }
-        var nome = { nome: 'Otávio' }
-        var destino = {}
-        var usuario = Object.assign(destino, nome, idade, sexo) // define um objeto de destino que recebe as propriedades dos outros objetos
+        let idade = { idade: 24 }
+        let sexo = { sexo: 'M' }
+        let nome = { nome: 'Otávio' }
+        let destino = {}
+        let usuario = Object.assign(destino, nome, idade, sexo) // define um objeto de destino que recebe as propriedades dos outros objetos
+        console.log(usuario)
+        
+
 
     </script>
 </body>

@@ -4,11 +4,17 @@ class Negociacao {
     // no constructor ficam as propriedades "caracteristicas" da nossa abstração
     // podemos receber valores como parametros da instancia da class
     // definir um underline à propriedade indica que esta não deva ser alterada (somente pelos métodos de dentro da própria class)
-    constructor(data, quantidade, valor){
+    constructor(_data, _quantidade, _valor){
 
-        this._data = new Date(data.getTime()), // programacao defensiva
-        this._quantidade = quantidade,
-        this._valor = valor,
+        // this._data = new Date(data.getTime()), // programacao defensiva
+        // this._quantidade = quantidade,
+        // this._valor = valor,
+
+        // Object.assign()
+        // atribuindo ao this as propriedades com seus valores
+        Object.assign(this, { _quantidade, _valor})
+        this._data = new Date(_data.getTime()) // programacao defensiva
+
         Object.freeze(this) // congela as propriedades do objeto
     }
 
