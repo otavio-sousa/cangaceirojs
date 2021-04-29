@@ -86,6 +86,39 @@
         negociacao.valor = 11
         console.log(negociacao.valor)
 
+        // por mais que tenhamos métodos acessadore isso não garante que possamos alterar as propriedades diretamente 
+        negociacao._valor = 12
+        console.log(negociacao.valor)
+
+        // objetos imutáveis
+        // faz com que congelemos as propriedades de um objeto fazendo com suas propriedades não possam ter valores reatribuidos
+        Object.freeze(negociacao)
+        console.log(Object.isFrozen(negociacao)) //verifica se o objeto está congelado ou não
+        negociacao._valor = 20000000000
+        console.log(negociacao.valor)
+
+        // nem todas as propriedades de um objeto pode ser congelada
+        // o Object.freeze só não nos deixa reatribuir um novo valor á variável
+        negociacao.data = new Date()
+
+        // mas ao acessarmos a propriedade data do nosso objeto ela retorna um objeto de data, consequentemente podemos reatribuir um valor aos métodos desse objeto data
+        negociacao.data.setDate(30)
+        console.log(negociacao.data)
+        
+        // programação defensiva
+        var hoje = new Date()
+        var negociacao2 = new Negociacao(hoje, 10, 900)
+        console.log('Data: ' + negociacao2.data)
+        hoje.setDate(10)
+        console.log('Data alterada: ' + negociacao2.data)
+
+        // adicionando propriedades à um objeto com Object.assign()
+        var idade = { idade: 24 }
+        var sexo = { sexo: 'M' }
+        var nome = { nome: 'Otávio' }
+        var destino = {}
+        var usuario = Object.assign(destino, nome, idade, sexo) // define um objeto de destino que recebe as propriedades dos outros objetos
+
     </script>
 </body>
 </html>
