@@ -59,69 +59,8 @@
         </tfoot>
     </table>
     <script src="app/domain/negociacao/Negociacao.js"></script>
-    <script>
-        
-        // o operador new serve para acessarmos o this de dentro do constructor e indicar que criamos uma nova instância do objeto
-        // cada instância é única e recebe as instruções definidas na class 
-        // var negociacao1 = new Negociacao()
-        // var negociacao2 = new Negociacao()
-        // negociacao1 != negociacao2
+    <script src="app/controllers/NegociacaoController.js"></script>
+    <script src="app/app.js"></script>
 
-        // podemos passar os valores como parametros para o constructor da class quando definimos uma instancia
-
-        let negociacao = new Negociacao(new Date(), 3, 100)
-        let volume = negociacao.volume
-        console.log(negociacao)
-        console.log(volume)
-
-        // metodos acessadores get
-        let quantidade = negociacao.quantidade
-        let valor = negociacao.valor
-        let data = negociacao.data
-        console.log(quantidade)
-        console.log(valor)
-        console.log(data)
-
-        // os metodos acessadores get não podem ter valores reatribuídos à eles
-        negociacao.valor = 11
-        console.log(negociacao.valor)
-
-        // por mais que tenhamos métodos acessadore isso não garante que possamos alterar as propriedades diretamente 
-        negociacao._valor = 12
-        console.log(negociacao.valor)
-
-        // objetos imutáveis
-        // faz com que congelemos as propriedades de um objeto fazendo com suas propriedades não possam ter valores reatribuidos
-        Object.freeze(negociacao)
-        console.log(Object.isFrozen(negociacao)) //verifica se o objeto está congelado ou não
-        negociacao._valor = 20000000000
-        console.log(negociacao.valor)
-
-        // nem todas as propriedades de um objeto pode ser congelada
-        // o Object.freeze só não nos deixa reatribuir um novo valor á variável
-        negociacao.data = new Date()
-
-        // mas ao acessarmos a propriedade data do nosso objeto ela retorna um objeto de data, consequentemente podemos reatribuir um valor aos métodos desse objeto data
-        negociacao.data.setDate(30)
-        console.log(negociacao.data)
-        
-        // programação defensiva
-        let hoje = new Date()
-        let negociacao2 = new Negociacao(hoje, 10, 900)
-        console.log('Data: ' + negociacao2.data)
-        hoje.setDate(10)
-        console.log('Data alterada: ' + negociacao2.data)
-
-        // adicionando propriedades à um objeto com Object.assign()
-        let idade = { idade: 24 }
-        let sexo = { sexo: 'M' }
-        let nome = { nome: 'Otávio' }
-        let destino = {}
-        let usuario = Object.assign(destino, nome, idade, sexo) // define um objeto de destino que recebe as propriedades dos outros objetos
-        console.log(usuario)
-        
-
-
-    </script>
 </body>
 </html>
