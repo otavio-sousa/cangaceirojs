@@ -17,20 +17,8 @@ class NegociacaoController {
     adiciona(event){
 
         event.preventDefault()
-
-        //SPREAD OPERATORS ...
-        // ao passar um array com o spread operator como parametro é iterado cada item do array como um parametro
         
-        let data = new Date(...this._inputData.value
-            .split('-')
-            .map((item, indice) => {
-
-                // PROBLEMA DO MES COMO PARAMETRO NO OBJETO DATA com operador aritmético módulo
-                // Os módulos (num % num) são o resto da divisão de um por outro
-                // ao dividirmos os nossos indices (0, 1, 2) por 2 e subtrairmos o resto da diivisão notaremos que o nosso argumento mês será subtraído 1
-                return item - indice % 2
-            }))
-
+        let data = DateConverter.stringToDate('11/05/2021')
 
         let negociacao =  new Negociacao(
             data,
@@ -38,7 +26,8 @@ class NegociacaoController {
             this._inputValor.value
         )
 
-        console.log(negociacao)
+        console.log(negociacao.data)
+        console.log(DateConverter.dateToString(negociacao.data))
     }
  
 
