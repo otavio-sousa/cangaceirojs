@@ -12,7 +12,8 @@ class NegociacaoController {
         this._inputQuantidade = $('#quantidade')
         this._inputValor = $('#valor')
         this._negociacoes = new Negociacoes()
-
+        this._negociacoesView = new NegociacoesView('#negociacoes')
+        this._negociacoesView.update(this._negociacoes)
     }
 
     adiciona(event){
@@ -20,12 +21,10 @@ class NegociacaoController {
         event.preventDefault()  
 
         this._negociacoes.adiciona(this._criaNegociacao())
-        console.log(this._negociacoes.paraArray())
-
-        // IMPEDINDO ALTERACAO DO ARRAY
-        this._negociacoes.paraArray().length = 0 //tenta modificar o array mas a referencia é o array copia e não acessa o valor do array original
-        console.log(this._negociacoes.paraArray())
-
+        this._negociacoes.paraArray().length = 0
+        this._negociacoesView.update(this._negociacoes)
+        
+        console.log(this._negociacoes.volumeTotal)
         this._limpaFormulario()
     }
 
