@@ -1,10 +1,11 @@
-class NegociacoesView {
+class NegociacoesView extends View{
 
-    constructor(elemento){
+    // REMOVENDO PARA PEGAR DE HERANCA
+    // constructor(elemento){
 
-        let $ = document.querySelector.bind(document)
-        this._elemento = $(elemento)
-    }
+    //     let $ = document.querySelector.bind(document)
+    //     this._elemento = $(elemento)
+    // }
 
 
     template(model){
@@ -43,10 +44,9 @@ class NegociacoesView {
         `
     }
 
-    update(model){
+    //REMOVENDO PARA PEGAR DE HERANCA
+    // update(model){
 
-        console.log(model)
-
-        return this._elemento.innerHTML = this.template(model)
-    }
+    //     return this._elemento.innerHTML = this.template(model)
+    // }
 }
