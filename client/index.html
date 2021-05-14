@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Negociações</title>
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/bootstrap-theme.css">
-    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </head>
 <body class="container">
+
+    <div id="mensagem"></div>
     
     <h1 class="text-center">Negociações</h1>
     
@@ -46,7 +47,10 @@
     
     <script src="app/domain/negociacao/Negociacao.js"></script>
     <script src="app/domain/negociacao/Negociacoes.js"></script>
+    <script src="app/ui/views/View.js"></script>
     <script src="app/ui/views/NegociacoesView.js"></script>
+    <script src="app/ui/models/Mensagem.js"></script>
+    <script src="app/ui/views/MensagemView.js"></script>
     <script src="app/controllers/NegociacaoController.js"></script>
     <script src="app/ui//converters/DateConverter.js"></script>
     <script src="app/app.js"></script>
