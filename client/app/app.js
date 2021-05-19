@@ -1,11 +1,7 @@
-// o app.js inicia nossa aplicão
-
 const negociacaoController = new NegociacaoController()
 
 const formulario = document.querySelector('form')
+const apagar = document.querySelector('#botao-apaga')
 
-// formulario.addEventListener('submit', function(event){
-//     negociacaoController.adiciona(event)
-// })
-// conseguimos escrever dessa forma sem declarar o event
 formulario.addEventListener('submit', negociacaoController.adiciona.bind(negociacaoController))
+apagar.addEventListener('click', negociacaoController.apaga.bind(negociacaoController))
