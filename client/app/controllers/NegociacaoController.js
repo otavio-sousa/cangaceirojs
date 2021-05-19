@@ -2,11 +2,16 @@ class NegociacaoController {
 
     constructor(){
 
-        let $ = document.querySelector.bind(document)
+        const $ = document.querySelector.bind(document)
         this._inputData = $('#data')
         this._inputQuantidade = $('#quantidade')
         this._inputValor = $('#valor')
-        this._negociacoes = new Negociacoes()
+        this._negociacoes = new Negociacoes(this, function(model){
+
+            // atualizando a view sempre que negociacao for alterada
+            // toda vez q acessar o método dessa instancia essa funcao é passado
+            this._negociacoesView.update(model)
+        })
 
         this._negociacoesView = new NegociacoesView('#negociacoes')
         this._negociacoesView.update(this._negociacoes)
@@ -22,11 +27,23 @@ class NegociacaoController {
 
         this._negociacoes.adiciona(this._criaNegociacao())
         this._negociacoes.paraArray().length = 0
-        this._negociacoesView.update(this._negociacoes)
+        // this._negociacoesView.update(this._negociacoes)
         
         this._mensagem.texto = 'Negociação criada'
         this._mensagemView.update(this._mensagem)
         this._limpaFormulario()
+    }
+
+    apaga(event){
+
+        event.preventDefault()
+
+        this._negociacoes.esvazia()
+        // this._negociacoesView.update(this._negociacoes)
+
+        this._mensagem.texto = 'Negociações apagadas'
+        this._mensagemView.update(this._mensagem)
+
     }
 
     _criaNegociacao(){
