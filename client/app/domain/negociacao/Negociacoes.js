@@ -1,10 +1,10 @@
 class Negociacoes {
 
-    constructor(contexto, updateView){
+    constructor(updateView){
 
         this._negociacoes = []
         // recebe o this de negociacaoController
-        this._contexto = contexto
+        // this._contexto = contexto
         // recebe um método de uma instancia de propriedade de negociacaoController
         this._updateView = updateView
         Object.freeze(this)
@@ -17,14 +17,16 @@ class Negociacoes {
         // atualizando view com call()
         // call oda funcao js tem
         // os parametros são .call(contexto do this, o parametro recebido)
-        this._updateView.call(this._contexto, this)
+        // this._updateView.call(this._contexto, this)
+        this._updateView(this)
         return 
     }
 
     esvazia(){
 
         this._negociacoes.length = 0
-        this._updateView.call(this._contexto, this)
+        // this._updateView.call(this._contexto, this)
+        this._updateView(this)
         return 
     }
 
