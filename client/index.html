@@ -71,8 +71,21 @@
                 console.log(`Está lendo a propriedade ${prop}`)
                 return target[prop] // retorna a propriedade -> instancia.propriedade
             },
+
+                // ESCRITA
+                // value: novo valor setado
+                set(target, prop, value, receiver){
+
+                    console.log(`Está escrevendo na propriedade: ${prop}`)
+                    target[prop] = value // passa o valor para a propriedade da instancia
+
+                    return target[prop] == value // obrigatório indicar se é true/false
+                }
         })
         console.log(negociacao) // temos acesso a todos os métodos e propriedades da instancia
+        console.log(negociacao.data) // cai no proxy que executa uma função e retorna algo
+        console.log(negociacao.valor = 2222)
+        console.log(negociacao.valor)
 
     </script>
 
