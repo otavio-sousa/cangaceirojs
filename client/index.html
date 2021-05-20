@@ -54,6 +54,16 @@
     <script src="app/controllers/NegociacaoController.js"></script>
     <script src="app/ui//converters/DateConverter.js"></script>
     <script src="app/app.js"></script>
+    <script>
+
+        // PROXY
+        // new Proxy(target, handler)
+        // target -> primeiro parametro: encapsula uma instancia e temos acesso a os métodos e propriedades dela
+        // handler -> segundo parametro: é um objeto que contém nossas armadilhas(código que queremos q execute ao acessarmos um método ou propriedade da instancia)
+        const negociacao = new Proxy(new Negociacao(new Date(), 11, 111), {})
+        console.log(negociacao) // temos acesso a todos os métodos e propriedades da instancia
+
+    </script>
 
 </body>
 </html>
