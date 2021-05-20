@@ -60,7 +60,18 @@
         // new Proxy(target, handler)
         // target -> primeiro parametro: encapsula uma instancia e temos acesso a os métodos e propriedades dela
         // handler -> segundo parametro: é um objeto que contém nossas armadilhas(código que queremos q execute ao acessarmos um método ou propriedade da instancia)
-        const negociacao = new Proxy(new Negociacao(new Date(), 11, 111), {})
+        const negociacao = new Proxy(new Negociacao(new Date(), 11, 111), {
+            // LEITURA
+            // executa a função antes de acessar o método/ propriedade da instancia encapsulada
+            // target: próprio objeto
+            // prop: nome do método/ propriedade
+            // receiver: é o proxy
+            get(target, prop, receiver){
+
+                console.log(`Está lendo a propriedade ${prop}`)
+                return target[prop] // retorna a propriedade -> instancia.propriedade
+            },
+        })
         console.log(negociacao) // temos acesso a todos os métodos e propriedades da instancia
 
     </script>
