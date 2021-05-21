@@ -2,14 +2,29 @@ class NegociacaoController {
 
     constructor(){
 
+        const self = this // guarda o contexto
         const $ = document.querySelector.bind(document)
         this._inputData = $('#data')
         this._inputQuantidade = $('#quantidade')
         this._inputValor = $('#valor')
-        // this._negociacoes = new Negociacoes(model => {
+        this._negociacoes = new Proxy(new Negociacoes(), {
 
-        //     this._negociacoesView.update(model)
-        // })
+            get(target, prop, receiver){
+
+                if(typeof(target[prop] == typeof(Function)) && ['adiciona', 'esvazia'].includes(prop)){
+
+                    return function(){
+
+                        console.log('caiu na armadilha')
+                        target[prop].apply(target, arguments) // pega o método e passa os parametros à ele se precisar
+                        self._negociacoesView.update(target) // atualiza a view com a instancia de lista
+                    }
+                } else {
+
+                    return target[prop]
+                }
+            }
+        })
 
         this._negociacoesView = new NegociacoesView('#negociacoes')
         this._negociacoesView.update(this._negociacoes)
@@ -25,7 +40,6 @@ class NegociacaoController {
 
         this._negociacoes.adiciona(this._criaNegociacao())
         this._negociacoes.paraArray().length = 0
-        // this._negociacoesView.update(this._negociacoes)
         
         this._mensagem.texto = 'Negociação criada'
         this._mensagemView.update(this._mensagem)
@@ -37,7 +51,6 @@ class NegociacaoController {
         event.preventDefault()
 
         this._negociacoes.esvazia()
-        // this._negociacoesView.update(this._negociacoes)
 
         this._mensagem.texto = 'Negociações apagadas'
         this._mensagemView.update(this._mensagem)
