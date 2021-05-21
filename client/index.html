@@ -62,7 +62,7 @@
         // handler -> segundo parametro: é um objeto que contém nossas armadilhas(código que queremos q execute ao acessarmos um método ou propriedade da instancia)
         const negociacao = new Proxy(new Negociacao(new Date(), 11, 111), {
 
-            // LEITURA
+            // PROXY LEITURA
             // executa a função antes de acessar o método/ propriedade da instancia encapsulada
             // target: próprio objeto
             // prop: nome do método/ propriedade
@@ -73,7 +73,7 @@
                 return target[prop] // retorna a propriedade -> instancia.propriedade
             },
 
-            // ESCRITA
+            // PROXY ESCRITA
             // value: novo valor setado
             set(target, prop, value, receiver){
 
@@ -88,10 +88,32 @@
             }
         })
 
-        console.log(negociacao) // temos acesso a todos os métodos e propriedades da instancia
-        console.log(negociacao.data) // cai no proxy que executa uma função e retorna algo
-        console.log(negociacao.valor = 2222)
-        console.log(negociacao.valor)
+        var negociacoes = new Proxy(new Negociacoes(), {
+
+            // PROXY MÉTODO
+            get(target, prop, receiver){
+
+                // verificando se estamos chamando um método && verificando se o nome da propriedade é aquela que queremos interceptar
+                if( typeof(target[prop]) == typeof(Function) && ['esvazia', 'adiciona'].includes(prop) ) {
+
+                    // retorna uma nova função
+                    return function(){
+
+                        // vai chamar o método
+                        // vai passar parametros à ele se houver
+                        // .apply(contexto, parametros se houver)
+                        return target[prop].apply(target, arguments)
+                    }
+                } else {
+
+                    return target[prop]
+                }
+            }
+        })
+
+        console.log(negociacoes.adiciona(new Negociacao(new Date(), 10, 100)))
+        console.log(negociacoes.esvazia())
+        console.log(negociacoes.paraArray())
 
     </script>
 
