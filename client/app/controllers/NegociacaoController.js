@@ -15,7 +15,6 @@ class NegociacaoController {
 
                     return function(){
 
-                        console.log('caiu na armadilha')
                         target[prop].apply(target, arguments) // pega o método e passa os parametros à ele se precisar
                         self._negociacoesView.update(target) // atualiza a view com a instancia de lista
                     }
@@ -29,7 +28,15 @@ class NegociacaoController {
         this._negociacoesView = new NegociacoesView('#negociacoes')
         this._negociacoesView.update(this._negociacoes)
 
-        this._mensagem = new Mensagem()
+        this._mensagem = new Proxy(new Mensagem(), {
+
+            set(target, prop, value, receiver){
+
+                Reflect.set(target, prop, value) // o valor deve ser setado priemeiro antes de chamar o método que atualiza a view
+                self._mensagemView.update(target)
+                return target[prop] == value
+            }
+        })
         this._mensagemView = new MensagemView('#mensagem')
         this._mensagemView.update(this._mensagem)
     }
@@ -42,7 +49,7 @@ class NegociacaoController {
         this._negociacoes.paraArray().length = 0
         
         this._mensagem.texto = 'Negociação criada'
-        this._mensagemView.update(this._mensagem)
+        // this._mensagemView.update(this._mensagem)
         this._limpaFormulario()
     }
 
@@ -53,7 +60,7 @@ class NegociacaoController {
         this._negociacoes.esvazia()
 
         this._mensagem.texto = 'Negociações apagadas'
-        this._mensagemView.update(this._mensagem)
+        // this._mensagemView.update(this._mensagem)
 
     }
 

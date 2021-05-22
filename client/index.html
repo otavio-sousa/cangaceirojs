@@ -88,7 +88,7 @@
             }
         })
 
-        var negociacoes = new Proxy(new Negociacoes(), {
+        const negociacoes = new Proxy(new Negociacoes(), {
 
             // PROXY MÉTODO
             get(target, prop, receiver){
@@ -111,9 +111,19 @@
             }
         })
 
-        console.log(negociacoes.adiciona(new Negociacao(new Date(), 10, 100)))
-        console.log(negociacoes.esvazia())
-        console.log(negociacoes.paraArray())
+        const mensagem = new Proxy(new Mensagem(), {
+
+            set(target, prop, value, receiver){
+
+
+                return function(){
+
+                    this._mensagemView.update(target)
+                    Reflect.set(target, target[prop], value)
+                }
+            }
+        })
+
 
     </script>
 
