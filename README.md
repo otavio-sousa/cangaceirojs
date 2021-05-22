@@ -1,5 +1,6 @@
 <h1>Já pensou fazer seu próprio framework javascript?</h1>
-![Alt Text](https://media.giphy.com/media/o0vwzuFwCGAFO/giphy.gif)
+<img src="https://media.giphy.com/media/ZvLUtG6BZkBi0/giphy.gif" width="200" height="180" />
+
 <blockquote>
 <em>Ou se achar muito pretencioso da sua parte, quem sabe você apenas queira saber como os frameworks da moda como <b>React, Angular e Vue</b> funcionam.</em>
 </blockquote>
