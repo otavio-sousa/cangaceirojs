@@ -7,36 +7,19 @@ class NegociacaoController {
         this._inputData = $('#data')
         this._inputQuantidade = $('#quantidade')
         this._inputValor = $('#valor')
-        this._negociacoes = new Proxy(new Negociacoes(), {
-
-            get(target, prop, receiver){
-
-                if(typeof(target[prop] == typeof(Function)) && ['adiciona', 'esvazia'].includes(prop)){
-
-                    return function(){
-
-                        target[prop].apply(target, arguments) // pega o método e passa os parametros à ele se precisar
-                        self._negociacoesView.update(target) // atualiza a view com a instancia de lista
-                    }
-                } else {
-
-                    return target[prop]
-                }
-            }
-        })
-
+        this._negociacoes = ProxyFactory.create(
+            new Negociacoes(),
+            ['adiciona', 'esvazia'],
+            model => this._negociacoesView.update(model) // apenas declara o método passando-o para a fábrica
+        )
         this._negociacoesView = new NegociacoesView('#negociacoes')
         this._negociacoesView.update(this._negociacoes)
 
-        this._mensagem = new Proxy(new Mensagem(), {
-
-            set(target, prop, value, receiver){
-
-                Reflect.set(target, prop, value) // o valor deve ser setado priemeiro antes de chamar o método que atualiza a view
-                self._mensagemView.update(target)
-                return target[prop] == value
-            }
-        })
+        this._mensagem = ProxyFactory.create(
+            new Mensagem(),
+            ['texto'],
+            model => this._mensagemView.update(model)
+        )
         this._mensagemView = new MensagemView('#mensagem')
         this._mensagemView.update(this._mensagem)
     }
